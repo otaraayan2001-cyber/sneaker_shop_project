@@ -53,7 +53,7 @@ DEFAULT_PRODUCTS = [
         "price": 160,
         "stock": 6,
         "category": "Featured",
-        "image": "images/hero-shoe.png",
+        "image": "images/hero-shoe.jpg",
         "accent": "cyan"
     },
 ]
