@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | StepStyle Sneaker Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell admin-shell">
+        <header class="topbar admin-topbar">
+            <div class="brand-wrap">
+                <div class="brand-mark">S</div>
+                <div>
+                    <div class="brand-name">Admin Panel</div>
+                    <p class="admin-small-text">Adjust product price and stock</p>
+                </div>
+            </div>
+            <a class="admin-back-link" href="{{ url_for('index') }}">← Back to Shop</a>
+        </header>
+
+        <main class="admin-main">
+            <section class="admin-hero">
+                <p class="mini-label">STOCK MANAGEMENT</p>
+                <h1>Manage Products</h1>
+                <p>Update each sneaker price and available stock. When a customer orders, the stock will automatically decrease.</p>
+            </section>
+
+            {% if message %}
+                <div class="admin-alert {{ status }}">{{ message }}</div>
+            {% endif %}
+
+            <section class="admin-table-wrap">
+                <div class="admin-table-head">
+                    <h2>Product Inventory</h2>
+                    <span>{{ products|length }} products</span>
+                </div>
+
+                <div class="admin-product-list">
+                    {% for product in products %}
+                    <form class="admin-product-row" method="POST" action="{{ url_for('update_product') }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+
+                        <div class="admin-product-info">
+                            <div class="admin-thumb accent-{{ product.accent }}">
+                                <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                            </div>
+                            <div>
+                                <p>{{ product.category }}</p>
+                                <h3>{{ product.name }}</h3>
+                            </div>
+                        </div>
+
+                        <label class="admin-field">
+                            <span>Price</span>
+                            <input type="number" name="price" min="0" step="0.01" value="{{ product.price }}" required>
+                        </label>
+
+                        <label class="admin-field">
+                            <span>Stock</span>
+                            <input type="number" name="stock" min="0" step="1" value="{{ product.stock }}" required>
+                        </label>
+
+                        <button class="admin-save-btn" type="submit">Save</button>
+                    </form>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <span>© {{ year }} StepStyle Sneaker Shop</span>
+            <span>Admin inventory control</span>
+        </footer>
+    </div>
+</body>
+</html>

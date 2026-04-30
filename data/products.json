@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Aero Runner X1",
+        "price": 180,
+        "stock": 11,
+        "category": "Running",
+        "image": "images/shoe1.svg",
+        "accent": "cyan"
+    },
+    {
+        "id": 2,
+        "name": "Street High V2",
+        "price": 190,
+        "stock": 8,
+        "category": "Sneakers",
+        "image": "images/shoe2.svg",
+        "accent": "red"
+    },
+    {
+        "id": 3,
+        "name": "Sunburst Low",
+        "price": 150,
+        "stock": 15,
+        "category": "Casual",
+        "image": "images/shoe3.svg",
+        "accent": "orange"
+    },
+    {
+        "id": 4,
+        "name": "Glide Max 90",
+        "price": 170,
+        "stock": 10,
+        "category": "Sport",
+        "image": "images/shoe4.svg",
+        "accent": "blue"
+    },
+    {
+        "id": 5,
+        "name": "Velocity Air Pro",
+        "price": 160,
+        "stock": 6,
+        "category": "Featured",
+        "image": "images/hero-shoe.svg",
+        "accent": "cyan"
+    }
+]

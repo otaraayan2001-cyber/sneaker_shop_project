@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepStyle | Sneaker Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand-wrap">
+                <div class="brand-mark">S</div>
+                <div class="brand-name">StepStyle</div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="active">MEN</a>
+                <a href="#">WOMEN</a>
+                <a href="#">KIDS</a>
+                <a href="#">SALE</a>
+                <a href="#">SPORT</a>
+                <a href="{{ url_for('admin') }}">ADMIN</a>
+            </nav>
+
+            <div class="topbar-actions">
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input id="searchInput" type="text" placeholder="search">
+                </div>
+                <button id="cartButton" class="icon-btn" type="button" aria-label="Open cart">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-left">
+                    <h1>JUST<br>MOVE<br>IN STYLE.</h1>
+                    <p>Modern sneaker shop design with a bold dark layout, spotlight hero product, and quick ordering interaction.</p>
+                    <button class="primary-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Shop Collection</button>
+                </div>
+
+                <div class="hero-center">
+                    <div class="hero-glow"></div>
+                    <img src="{{ url_for('static', filename=featured.image) }}" alt="Featured shoe" class="hero-shoe">
+                    <div class="hero-curve"></div>
+                    <button class="play-btn" type="button">▶</button>
+                </div>
+
+                <div class="hero-right">
+                    <p class="mini-label">FEATURED DROP</p>
+                    <h2>{{ featured.name }}</h2>
+                    <p class="featured-copy">{{ featured.description }}</p>
+                    <div class="featured-price">${{ featured.price }}</div>
+                    <div class="stock-badge {% if featured.stock <= 0 %}out{% endif %}" id="stock-{{ featured.id }}">Stock: {{ featured.stock }}</div>
+                    <button class="outline-btn" type="button" onclick="openOrderModal({{ featured.id }})" {% if featured.stock <= 0 %}disabled{% endif %}>Buy Now</button>
+                </div>
+            </section>
+
+            <section class="product-section" id="catalog">
+                <div class="section-head">
+                    <div>
+                        <p class="mini-label">LATEST COLLECTION</p>
+                        <h3>Trending Sneakers</h3>
+                    </div>
+                    <p class="section-text">Choose from our stylish new releases with a premium card layout inspired by modern sneaker stores.</p>
+                </div>
+
+                <div class="product-grid" id="productGrid">
+                    {% for product in products %}
+                    <article class="product-card" data-name="{{ product.name|lower }} {{ product.category|lower }}">
+                        <div class="card-media accent-{{ product.accent }}">
+                            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                        </div>
+                        <div class="card-info">
+                            <div>
+                                <p class="card-category">{{ product.category }}</p>
+                                <h4>{{ product.name }}</h4>
+                                <div class="price">${{ product.price }}</div>
+                                <div class="stock-badge {% if product.stock <= 0 %}out{% endif %}" id="stock-{{ product.id }}">Stock: {{ product.stock }}</div>
+                            </div>
+                            <button class="plus-btn" type="button" onclick="openOrderModal({{ product.id }})" {% if product.stock <= 0 %}disabled{% endif %}>+</button>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <aside class="cart-drawer" id="cartDrawer">
+            <div class="drawer-header">
+                <h3>Order History</h3>
+                <button class="close-btn" type="button" onclick="toggleCart(false)">✕</button>
+            </div>
+            <p class="drawer-sub">Recent orders will appear here.</p>
+            <div id="orderList" class="order-list">
+                <div class="empty-state">No orders yet.</div>
+            </div>
+        </aside>
+
+
+        <div class="modal-backdrop" id="orderModalBackdrop" onclick="closeOrderModal()"></div>
+        <section class="order-modal" id="orderModal" aria-hidden="true">
+            <div class="modal-header">
+                <div>
+                    <p class="mini-label">CUSTOMER ORDER</p>
+                    <h3 id="modalProductName">Product Name</h3>
+                </div>
+                <button class="close-btn" type="button" onclick="closeOrderModal()">✕</button>
+            </div>
+
+            <form id="orderForm" class="order-form">
+                <input type="hidden" id="modalProductId">
+
+                <label>
+                    <span>Customer Name</span>
+                    <input type="text" id="customerName" placeholder="Enter customer name" required>
+                </label>
+
+                <label>
+                    <span>Quantity</span>
+                    <input type="number" id="orderQuantity" min="1" value="1" required>
+                </label>
+
+                <div class="order-summary">
+                    <span id="modalProductPrice">$0</span>
+                    <span id="modalProductStock">Stock: 0</span>
+                </div>
+
+                <button class="primary-btn full-btn" type="submit">Place Order</button>
+            </form>
+        </section>
+
+        <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleCart(false)"></div>
+
+        <footer class="footer">
+            <span>© {{ year }} StepStyle Sneaker Shop</span>
+            <span>Built with Flask • Ready for GitHub and Render</span>
+        </footer>
+    </div>
+
+    <script>
+        const PRODUCTS = {{ products | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

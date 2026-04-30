@@ -1,0 +1,12 @@
+[
+    {
+        "order_id": "20260430161544539974",
+        "customer_name": "otara",
+        "product": "Aero Runner X1",
+        "quantity": 1,
+        "price": 180,
+        "total": 180,
+        "remaining_stock": 11,
+        "created_at": "Apr 30, 2026 04:15 PM"
+    }
+]
