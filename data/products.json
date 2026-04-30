@@ -5,7 +5,7 @@
         "price": 180,
         "stock": 11,
         "category": "Running",
-        "image": "images/shoe1.svg",
+        "image": "images/shoe1.jpg",
         "accent": "cyan"
     },
     {
@@ -14,7 +14,7 @@
         "price": 190,
         "stock": 8,
         "category": "Sneakers",
-        "image": "images/shoe2.svg",
+        "image": "images/shoe2.jpg",
         "accent": "red"
     },
     {
@@ -23,7 +23,7 @@
         "price": 150,
         "stock": 15,
         "category": "Casual",
-        "image": "images/shoe3.svg",
+        "image": "images/shoe3.jpg",
         "accent": "orange"
     },
     {
@@ -32,7 +32,7 @@
         "price": 170,
         "stock": 10,
         "category": "Sport",
-        "image": "images/shoe4.svg",
+        "image": "images/shoe4.jpg",
         "accent": "blue"
     },
     {
@@ -41,7 +41,7 @@
         "price": 160,
         "stock": 6,
         "category": "Featured",
-        "image": "images/hero-shoe.svg",
+        "image": "images/hero-shoe.jpg",
         "accent": "cyan"
     }
 ]
