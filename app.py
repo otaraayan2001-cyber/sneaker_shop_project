@@ -17,7 +17,7 @@ DEFAULT_PRODUCTS = [
         "price": 180,
         "stock": 12,
         "category": "Running",
-        "image": "images/shoe1.svg",
+        "image": "images/shoe1.png",
         "accent": "cyan"
     },
     {
@@ -26,7 +26,7 @@ DEFAULT_PRODUCTS = [
         "price": 190,
         "stock": 8,
         "category": "Sneakers",
-        "image": "images/shoe2.svg",
+        "image": "images/shoe2.png",
         "accent": "red"
     },
     {
@@ -35,7 +35,7 @@ DEFAULT_PRODUCTS = [
         "price": 150,
         "stock": 15,
         "category": "Casual",
-        "image": "images/shoe3.svg",
+        "image": "images/shoe3.png",
         "accent": "orange"
     },
     {
@@ -44,7 +44,7 @@ DEFAULT_PRODUCTS = [
         "price": 170,
         "stock": 10,
         "category": "Sport",
-        "image": "images/shoe4.svg",
+        "image": "images/shoe4.png",
         "accent": "blue"
     },
     {
@@ -53,7 +53,7 @@ DEFAULT_PRODUCTS = [
         "price": 160,
         "stock": 6,
         "category": "Featured",
-        "image": "images/hero-shoe.svg",
+        "image": "images/hero-shoe.png",
         "accent": "cyan"
     },
 ]
